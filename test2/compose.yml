@@ -1,0 +1,24 @@
+services:
+  backend:
+    container_name: payment-backend-test2
+    image: payment-backend-test2
+    build: ./backend
+    env_file: .env
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+
+  frontend:
+    container_name: payment-frontend-test2
+    image: payment-frontend-test2
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
